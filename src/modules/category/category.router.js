@@ -1,3 +1,4 @@
+import subcategory from "../subcategory/subcategory.router.js";
 import { fileUpload, fileValidation } from "../../utils/multer.js";
 import { Router } from "express";
 import { createCategory } from "./controller/create.category.js";
@@ -16,15 +17,16 @@ const router = Router();
  * delete
  */
 
+router.use("/:categoryId/:subcategoryId",  subcategory )
 router.post(
   "/",
-  fileUpload(fileValidation.image).single(image),
+  fileUpload(fileValidation.image).single('image'),
   validation(validators.create),
   asyncHandler(createCategory)
 );
 router.put(
   "/:categoryId",
-  fileUpload(fileValidation.image).single(image),
+  fileUpload(fileValidation.image).single('image'),
   validation(validators.update),
   asyncHandler(updateCategory)
 );
