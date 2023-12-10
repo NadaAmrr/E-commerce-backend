@@ -31,6 +31,16 @@ const subcategorySchema = new Schema(
         required: true,
       },
     },
+    description: { 
+      ar: {
+        type: String,
+        lowercase: true,
+      },
+      en: {
+        type: String,
+        lowercase: true,
+      },
+     },
     image: assetsSchema,
     categoryId: { type: Types.ObjectId, ref: "Category", required: true },
     createdBy: { type: Types.ObjectId, ref: "Admin", required: true },
