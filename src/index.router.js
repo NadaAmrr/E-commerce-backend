@@ -1,29 +1,24 @@
+import { dbConnection } from "../DB/connection.js";
+import categoryRouter from "./modules/category/category.router.js";
+import subcategoryRouter from "./modules/subcategory/subcategory.router.js";
+import couponRouter from "./modules/coupon/coupon.router.js";
+import brandRouter from "./modules/brand/brand.router.js";
+import { globalErrorHandling } from "./utils/errorHandling.js";
 
-import connectDB from '../DB/connection.js'
-// import userRouter from './modules/user/user.router.js'
-// import postRouter from './modules/post/post.router.js'
-// import authRouter from './modules/auth/auth.router.js'
-// import commentRouter from './modules/comment/comment.router.js'
-// import replyRouter from './modules/reply/reply.router.js'
-import categoryRouter from './modules/category/category.router.js'
-import { globalErrorHandling } from './utils/errorHandling.js'
+const bootstrap = (app, express) => {
+  app.use(express.json({}));
 
-const bootstrap = (app , express)=>{
-    app.use(express.json({}));
+  app.use("/category", categoryRouter);
+  app.use("/subcategory", subcategoryRouter);
+  app.use("/coupon", couponRouter);
+  app.use("/brand", brandRouter);
 
-//    app.use("/auth", authRouter)
-//    app.use("/user", userRouter)
-//    app.use("/post", postRouter)
-//    app.use("/comment", commentRouter)
-//    app.use("/reply", replyRouter)
-   app.use("/category", categoryRouter)
+  app.use("*", (req, res, next) => {
+    return res.json({ message: "In-valid Routing" });
+  });
+  app.use(globalErrorHandling);
 
-   app.use("*",(req,res,next)=>{
-    return res.json({message:"In-valid Routing"})
-   });
-   app.use(globalErrorHandling)
+  dbConnection();
+};
 
-   connectDB()
-}
-
-export default bootstrap
+export default bootstrap;
