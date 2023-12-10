@@ -47,8 +47,8 @@ export const createCategory = async (req, res, next) => {
       en: slugify(nameEN, "-"),
     },
     description: {
-      ar: descriptionAR,
-      en: descriptionEN,
+      ar: req.body.descriptionAR,
+      en: req.body.descriptionEN,
     },
     image: { secure_url, public_id },
     customId,

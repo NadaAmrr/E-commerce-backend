@@ -55,7 +55,7 @@ export const updateCategory = async (req, res, next) => {
       };
     }
   }
-  if (req.file.image) {
+  if (req.file) {
     category.customId = nanoid(5);
     await cloudinary.uploader.destroy(
       category.image.public_id,
@@ -89,7 +89,7 @@ export const updateCategory = async (req, res, next) => {
       )
     );
   }
-  return res.status(StatusCodes.CREATED).json({
+  return res.status(StatusCodes.OK).json({
     message: allMessages[req.query.ln].SUCCESS_UPDATE_CATEGORY,
     category,
   });
