@@ -8,4 +8,4 @@ export const dbConnection = async () => {
     })
 }
 
-mongoose.set('strictQuery', true);
+// mongoose.set('strictQuery', true);

@@ -21,6 +21,13 @@ export const allMessages = {
     Fail_EXIST_SUBCATEGORY: "Duplicate Subcategory name",
     Fail_NOTFOUND_SUBCATEGORY: "Subcategory not found",
     Fail_UPDATE_SUBCATEGORY: "Fail to update subcategory",
+    //Coupon
+    Fail_EXIST_COUPON: "Duplicate coupon name",
+    Fail_CREATE_COUPON: "Coupon creation failed",
+    Fail_UPDATE_COUPON: "",
+    SUCCESS_UPDATE_COUPON: "",
+    SUCCESS_CREATE_COUPON: "Coupon created successfully",
+    Fail_TOUPDATE_COUPON: "Cannot update, Look like customers used this coupon",
   },
   ar: {
     //Common
