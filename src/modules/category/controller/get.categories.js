@@ -4,9 +4,9 @@ import { allMessages } from "../../../utils/localizationHelper.js";
 import { StatusCodes } from "http-status-codes";
 /**
  * authorized: All
- * input: categoryId
- * output: get one category
- * Logic: Find one category ? ✔️: ❎ not found
+ * input:
+ * output: get categories
+ * Logic: Find categories ? ✔️: ❎ not found
  */
 export const getCategories = async (req, res, next) => {
   const categories = await categoryModel.find();

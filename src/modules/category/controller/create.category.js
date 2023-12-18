@@ -52,6 +52,7 @@ export const createCategory = async (req, res, next) => {
     },
     image: { secure_url, public_id },
     customId,
+    createdBy: req.user._id,
   });
   if (!category) {
     return next(

@@ -12,9 +12,8 @@ import { nanoid } from "nanoid";
  * logic: Change name of category or image By same admin that created category
  */
 export const updateCategory = async (req, res, next) => {
-  //Should admin == req.user._id && categoryID ✔️
   const category = await categoryModel.findOne({
-    _id: req.param.categoryId,
+    _id: req.params.categoryId,
     createdBy: req.user._id,
   });
   if (!category) {
