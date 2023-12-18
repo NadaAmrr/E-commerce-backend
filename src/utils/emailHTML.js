@@ -1,10 +1,10 @@
-export const createHtml = ({code} = {}) => {
+export const createHtml = ({ msg, code } = {}) => {
   return `
 <!DOCTYPE html>
 <html>
 <body>
+   <p>${msg}</p>
    <p>${code}</p>
-   <p></p>
 </body>
 </html>`;
 };
