@@ -22,7 +22,6 @@ export const personSchema = {
   },
   password: { type: String, required: true },
   phone: { type: String, required: true },
-  // loggedIn: { type: Boolean, default: false },
   status: { type: String, default: "offline", enum: ["offline", "online"] },
   confirmed: { type: Boolean, default: false },
   gender: {
