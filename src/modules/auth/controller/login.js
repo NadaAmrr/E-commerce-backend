@@ -40,7 +40,7 @@ export const login = async (req, res, next) => {
     );
   }
   const accessToken = generateToken(
-    { payload: { id: user._id, email: user.email, role: model } },
+    { payload: { id: user._id, email: user.email, role: req.params.role } },
     { expiresIn: 60 * 60 * 24 * 30 * 2 }
   );
   user.status = "online";
