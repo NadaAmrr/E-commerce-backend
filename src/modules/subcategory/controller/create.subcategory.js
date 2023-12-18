@@ -6,7 +6,7 @@ import { allMessages } from "../../../utils/localizationHelper.js";
 import { StatusCodes } from "http-status-codes";
 import { nanoid } from "nanoid";
 /**
- * Authoried: Admin 
+ * Authoried: Admin
  * input: nameAR, nameEN , image?
  * output: create subcategory
  * Logic: Find if subcategory name found before? ✔️ Exist name : ❎
@@ -14,11 +14,10 @@ import { nanoid } from "nanoid";
 export const createSubCategory = async (req, res, next) => {
   const { nameAR, nameEN } = req.body;
   const { categoryId } = req.params;
-  console.log(req.originalUrl);
   if (
     await subcategoryModel.findOne({
       $or: [{ "name.ar": nameAR }, { "name.en": nameEN }],
-      categoryId
+      categoryId,
     })
   ) {
     return next(
@@ -56,7 +55,7 @@ export const createSubCategory = async (req, res, next) => {
     },
     customId,
     categoryId,
-    createdBy: req.user._id
+    createdBy: req.user._id,
   });
   if (!subcategory) {
     return next(
@@ -66,10 +65,8 @@ export const createSubCategory = async (req, res, next) => {
       )
     );
   }
-  return res
-    .status(StatusCodes.CREATED)
-    .json({
-      message: allMessages[req.query.ln].SUCCESS_CREATE_SUBCATEGORY,
-      subcategory,
-    });
+  return res.status(StatusCodes.CREATED).json({
+    message: allMessages[req.query.ln].SUCCESS_CREATE_SUBCATEGORY,
+    subcategory,
+  });
 };

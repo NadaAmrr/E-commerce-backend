@@ -1,13 +1,10 @@
-import slugify from "slugify";
-import categoryModel from "../../../../DB/model/Category.model.js";
-import cloudinary from "../../../utils/cloudinary.js";
 import { ErrorClass } from "../../../utils/errorClass.js";
 import { allMessages } from "../../../utils/localizationHelper.js";
 import { StatusCodes } from "http-status-codes";
-import { nanoid } from "nanoid";
+import subcategoryModel from "../../../../DB/model/Subcategory.model.js";
 /**
  * authorized: All
- * input: subcategoryId 
+ * input: subcategoryId
  * output: get one subcategory
  * logic: Find one subcategory ? ✔️: ❎ not found
  */

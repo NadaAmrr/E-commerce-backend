@@ -26,6 +26,11 @@ export const update = joi
   })
   .required();
 
-export const getOne = joi.object({
+export const getAll = joi.object({
+  ln: generalFields.ln.required(),
+});
+
+export const common = joi.object({
   subcategoryId: generalFields.id,
+  ln: generalFields.ln.required(),
 });
