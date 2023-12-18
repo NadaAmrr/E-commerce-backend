@@ -16,6 +16,14 @@ export const confirm = async (req, res, next) => {
       )
     );
   }
+  if (user.confirmed == true) {
+    return next(
+      new ErrorClass(
+        allMessages[req.query.ln].CONFIRMED_BEFORE,
+        StatusCodes.BAD_REQUEST
+      )
+    );
+  }
   if (code != user.OTP.code) {
     return next(
       new ErrorClass(
