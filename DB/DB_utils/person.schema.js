@@ -1,8 +1,14 @@
-import { imageSchema } from "./imageSchema.js";
-import { codeSchema } from "./codeSchema.js";
+import { assetsSchema } from "./assets.schema.js";
+import { codeSchema } from "./code.schema.js";
 
 export const personSchema = {
-  name: {
+  firstName: {
+    type: String,
+    required: true,
+    minLength: 2,
+    lowercase: true,
+  },
+  lastName: {
     type: String,
     required: true,
     minLength: 2,
@@ -16,15 +22,16 @@ export const personSchema = {
   },
   password: { type: String, required: true },
   phone: { type: String, required: true },
-  loggedIn: { type: Boolean, default: false },
+  // loggedIn: { type: Boolean, default: false },
+  status: { type: String, default: "offline", enum: ["offline", "online"] },
   confirmed: { type: Boolean, default: false },
   gender: {
     type: String,
     enum: ["male", "female"],
     required: false,
   },
-  image: imageSchema,
+  image: assetsSchema,
   OTP: codeSchema,
   customId: String,
-  DateOfBirth: { type: Date },
+  DOB: { type: Date },
 };
