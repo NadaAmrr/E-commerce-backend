@@ -1,10 +1,6 @@
 import joi from "joi";
 import { generalFields } from "../../middleware/validation.js";
-/**
- * Create category => create
- * Update category => update
- *
- */
+
 export const create = joi
   .object({
     ln: generalFields.ln.required(),

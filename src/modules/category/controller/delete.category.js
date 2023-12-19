@@ -1,10 +1,6 @@
-import slugify from "slugify";
 import categoryModel from "../../../../DB/model/Category.model.js";
-import cloudinary from "../../../utils/cloudinary.js";
-import { ErrorClass } from "../../../utils/errorClass.js";
 import { allMessages } from "../../../utils/localizationHelper.js";
 import { StatusCodes } from "http-status-codes";
-import { nanoid } from "nanoid";
 /**
  * authorized: Admin
  * input: categoryId
