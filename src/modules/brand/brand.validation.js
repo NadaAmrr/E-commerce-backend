@@ -1,10 +1,6 @@
 import joi from "joi";
 import { generalFields } from "../../middleware/validation.js";
-/**
- * Create brand => create
- * Update brand => update
- *
- */
+
 export const create = joi
   .object({
     nameEN: joi.string().min(2).max(25).required(),
@@ -16,6 +12,7 @@ export const create = joi
 
 export const update = joi
   .object({
+    ln: generalFields.ln.required(),
     brandId: generalFields.id,
     nameAR: joi.string().min(2).max(25),
     nameEN: joi.string().min(2).max(25),
@@ -23,6 +20,11 @@ export const update = joi
   })
   .required();
 
-export const getOne = joi.object({
+export const common = joi.object({
   brandId: generalFields.id,
+  ln: generalFields.ln.required(),
+});
+
+export const getAll = joi.object({
+  ln: generalFields.ln.required(),
 });
