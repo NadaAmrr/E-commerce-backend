@@ -5,11 +5,12 @@ import { StatusCodes } from "http-status-codes";
 import couponModel from "../../../../DB/model/Coupon.model.js";
 /**
  * authorized: Admin
- * input:
+ * input: image? - amount - expireDate
  * output: create coupon
  * logic:
  */
 export const createCoupon = async (req, res, next) => {
+  // Check if other coupons have same name
   if (await couponModel.findOne({ name: req.body.name })) {
     return next(
       new ErrorClass(
@@ -18,6 +19,7 @@ export const createCoupon = async (req, res, next) => {
       )
     );
   }
+  // Check if admin add Image  ( image? )
   if (req.file) {
     const { secure_url, public_id } = await cloudinary.uploader.upload(
       req.file.path,
@@ -32,7 +34,11 @@ export const createCoupon = async (req, res, next) => {
     );
     req.body.image = { secure_url, public_id };
   }
-  const coupon = await couponModel.create(req.body);
+  const coupon = await couponModel.create({
+    name: req.body.name,
+    image: req.body.image,
+    createdBy: req.user._id,
+  });
   if (!coupon) {
     return next(
       new ErrorClass(

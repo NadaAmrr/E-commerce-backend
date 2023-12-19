@@ -5,14 +5,14 @@ import { StatusCodes } from "http-status-codes";
 import couponModel from "../../../../DB/model/Coupon.model.js";
 /**
  * authorized: Admin
- * input:
+ * input: name? , amount? , image?
  * output: update coupon
  * logic:
  */
 export const updateCoupon = async (req, res, next) => {
   const coupon = await couponModel.findOne({ createdBy: req.user._id });
   // update if not any one use this coupon
-  if (coupon.usedBy != []) {
+  if (coupon.usedBy.length != 0) {
     return next(
       new ErrorClass(
         allMessages[req.query.ln].Fail_TOUPDATE_COUPON,
@@ -20,11 +20,13 @@ export const updateCoupon = async (req, res, next) => {
       )
     );
   }
-  const couponOther = await couponModel.findOne({
-    name: req.body.name,
-    createdBy: { $ne: req.user._id },
-  });
-  if (couponOther) {
+  // const couponOther = ;
+  if (
+    await couponModel.findOne({
+      name: req.body.name,
+      createdBy: { $ne: req.user._id },
+    })
+  ) {
     return next(
       new ErrorClass(
         allMessages[req.query.ln].Fail_EXIST_COUPON,
@@ -41,7 +43,7 @@ export const updateCoupon = async (req, res, next) => {
   if (req.file) {
     if (coupon.image) {
       await cloudinary.uploader.destroy(
-        category.image.public_id,
+        coupon.image.public_id,
         (error, result) => {
           if (error) {
             console.error(error);
