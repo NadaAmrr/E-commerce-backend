@@ -1,5 +1,5 @@
 import bcrypt from "bcryptjs";
-import CryptoJS from"crypto-js";
+import CryptoJS from "crypto-js";
 
 // Hash
 export const hash = ({ plaintext, salt = process.env.SALT_ROUND } = {}) => {
@@ -16,5 +16,6 @@ export const encryptData = (plaintext) => {
   return CryptoJS.AES.encrypt(plaintext, process.env.encryption_Key).toString();
 };
 // Decrypt
-export const decryptData = (encryptData) => { 
-   return CryptoJS.AES.decrypt(encryptData, process.env.encryption_Key)}
+export const decryptData = (encryptData) => {
+  return CryptoJS.AES.decrypt(encryptData, process.env.encryption_Key);
+};
