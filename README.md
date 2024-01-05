@@ -17,3 +17,7 @@ The application is built using Node.js and includes the following dependencies:
 - Express 
 - Mongoose
 - Cloudinary
+
+## Visitors Count
+
+<img align="left" style="background: blue;" src="https://profile-counter.glitch.me/E-commerce-backend/count.svg" alt="Loading">
